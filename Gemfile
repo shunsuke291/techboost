@@ -69,3 +69,4 @@ gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem "carrierwave"
+gem "carrierwave"
