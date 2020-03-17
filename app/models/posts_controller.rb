@@ -7,6 +7,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def create
@@ -24,4 +26,3 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content)
   end
 end
-  

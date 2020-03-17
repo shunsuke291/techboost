@@ -1,3 +1,3 @@
-class Product < ActiveRecord::Base
-  mount_uploader :image, ImageUploader
-end
+resources :images do 
+  resouces :comments, only: [:create, :destroy]
+end 

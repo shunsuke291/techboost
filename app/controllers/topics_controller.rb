@@ -1,4 +1,4 @@
-class TopicsController < ApplicationController
+class TopicsController < ApplicationController #使える　appli から　topics に使える
   def index
     @topics = Topic.all.includes(:favorite_users)
   end
