@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'topics/new'
   get 'sessions/new'
-
+  get 'topics/new'
   root 'pages#index'
   get 'pages/help'
+  root 'homes#top'
+  get 'homes/sitemap'
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -11,11 +12,13 @@ Rails.application.routes.draw do
 
   resources :users
   resources :topics
-  resources :users, only: [:index, :show]
-  resources :posts, only: [:index, :show, :create]
-  resources :comments, only: [:create]
+  
   get 'favorites/index'
+  get 'comment/new'
   post '/favorites', to: 'favorites#create'
-  post "likes/:post_id/create" => "likes#create"
-  post "likes/:post_id/destroy" => "likes#destroy"
+  delete '/favorites', to: 'favorites#destroy'
+  get '/comments/:topic_id/new', to: 'comments#new', as: 'comments'
+  post '/comments/:topic_id/create', to: 'comments#create', as:'comments_create'
+  delete 'topics/:id' => 'favorites#destroy'
+    resources :comments, only: [:create, :destroy]
 end

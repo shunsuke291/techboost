@@ -23,11 +23,30 @@
             <p class="topic-text">
               <%= topic.description %>
             </p>
-          <h3>コメント</h3>
-              <%= link_to favorites_path (topic_id: topic.id), method: :post do %>
-                <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
+           <h3>コメント</h3>
+            <% topic.comments.each do |comment| %>
+                <p class="topic-text">
+                  <%= comment.comment %>
+                </p>
+            <% end %>
+            
+            <%= form_tag comments_create_path(topic.id) do  %>
+              <div class="form-group">
+                <%= label_tag :comment %>
+                <%= text_area_tag :comment, nil, class: 'form-control' %>
+              </div>
+              <% if logged_in? %>
+                <%= submit_tag '投稿', class: 'btn btn-black btn-block' %>
               <% end %>
+            <% end %>
           </div>
+      <div class="contents row">
+         <div class="success">
+            <h4>
+             </h4>
+                <a class="btn" href="/">投稿一覧へ戻る</a>
+              </div>
+            </div>
         </div>
       </div>
     <% end %>
